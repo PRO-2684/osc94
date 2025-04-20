@@ -1,7 +1,7 @@
 //! This module is for handling raw progress bar sequence (OSC 9;4).
 
-use std::fmt::Display;
 use super::ProgressState;
+use std::fmt::Display;
 
 /// A raw progress bar sequence (OSC 9;4).
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]

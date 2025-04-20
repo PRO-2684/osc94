@@ -8,8 +8,8 @@ pub enum ProgressState {
     /// Use this state when the command is complete, to clear out any progress state.
     #[default]
     Hidden = 0,
-    /// Set progress value to [`progress`](ProgressBar::progress), in the "default" state.
-    Default = 1,
+    /// Set progress value to [`progress`](ProgressBar::progress), in the "Normal" state.
+    Normal = 1,
     /// Set progress value to [`progress`](ProgressBar::progress), in the "Error" state.
     Error = 2,
     /// Set the taskbar to the "Indeterminate" state, ignoring the [`progress`](ProgressBar::progress) value.
