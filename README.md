@@ -10,21 +10,32 @@
 
 Library for handling progress bar sequences (OSC 9;4).
 
-## ⚙️ Automatic Releases Setup
+## 💡 Example
 
-1. [Create a new GitHub repository](https://github.com/new) with the name `osc94` and push this generated project to it.
-2. Enable Actions for the repository, and grant "Read and write permissions" to the workflow [here](https://github.com/PRO-2684/osc94/settings/actions).
-3. [Generate an API token on crates.io](https://crates.io/settings/tokens/new), with the following setup:
+```rust
+use osc94::Progress;
+use std::io::Result;
 
-    - `Name`: `osc94`
-    - `Expiration`: `No expiration`
-    - `Scopes`: `publish-new`, `publish-update`
-    - `Crates`: `osc94`
+# fn work() {}
+#
+fn main() -> Result<()> {
+    let mut progress = Progress::default();
+    progress.start();
 
-4. [Add a repository secret](https://github.com/PRO-2684/osc94/settings/secrets/actions) named `CARGO_TOKEN` with the generated token as its value.
-5. Consider removing this section and updating this README with your own project information.
+    for i in 0..=100 {
+        work();
+        progress.increment(1).flush()?;
+    }
 
-## 📥 Installation
+    Ok(())
+}
+```
+
+## 📖 Usage
+
+Usually, you'll only need the `Progress` struct, which provides a high-level interface and handles clean up job for you when dropped. If you need finer control, you can use the `OSC94` struct and `ProgressState` enum. See the documentation of respective API for more details.
+
+## 📥 Demo Binary
 
 ### Using [`binstall`](https://github.com/cargo-bins/cargo-binstall)
 
@@ -41,14 +52,6 @@ Navigate to the [Releases page](https://github.com/PRO-2684/osc94/releases) and 
 ```shell
 cargo install osc94
 ```
-
-## 💡 Examples
-
-TODO
-
-## 📖 Usage
-
-TODO
 
 ## 🎉 Credits
 

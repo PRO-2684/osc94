@@ -1,6 +1,4 @@
-//! # `osc94` library crate
-//!
-//! Library for handling progress bar sequences (OSC 9;4).
+#![doc = include_str!("../README.md")]
 
 #![deny(missing_docs)]
 #![warn(clippy::all, clippy::nursery, clippy::pedantic, clippy::cargo)]

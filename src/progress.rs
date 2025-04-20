@@ -9,16 +9,20 @@ use std::io::{Result as IoResult, Stderr, Write};
 ///
 /// ```rust
 /// use osc94::Progress;
+/// use std::io::Result;
 ///
 /// # fn work() {}
 /// #
-/// let mut progress = Progress::default();
-/// progress.start();
+/// fn main() -> Result<()> {
+///     let mut progress = Progress::default();
+///     progress.start();
 ///
-/// for i in 0..=100 {
-///   work();
-///   progress.increment(1);
-///   progress.flush().unwrap();
+///     for i in 0..=100 {
+///         work();
+///         progress.increment(1).flush()?;
+///     }
+///
+///     Ok(())
 /// }
 /// ```
 ///
@@ -178,7 +182,7 @@ impl<W: Write> Drop for Progress<W> {
 }
 
 impl Default for Progress<Stderr> {
-    /// Creates a new `DefaultProgress` instance with default values.
+    /// Creates a new `Progress` instance with default values.
     fn default() -> Self {
         Self {
             state: ProgressState::Hidden,
