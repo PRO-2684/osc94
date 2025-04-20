@@ -52,4 +52,4 @@ TODO
 
 ## 🎉 Credits
 
-TODO
+- Microsoft Docs on [progress bar sequences](https://learn.microsoft.com/en-us/windows/terminal/tutorials/progress-bar-sequences) ([GitHub](https://github.com/MicrosoftDocs/terminal/blob/main/TerminalDocs/tutorials/progress-bar-sequences.md))
