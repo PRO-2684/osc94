@@ -14,6 +14,7 @@ pub struct OSC94 {
 
 impl OSC94 {
     /// Creates a default progress bar sequence.
+    #[must_use]
     pub fn new() -> Self {
         Self::default()
     }
@@ -32,6 +33,6 @@ mod tests {
     #[test]
     fn test_raw_progress_sequence() {
         let sequence = OSC94::new();
-        assert_eq!(format!("{}", sequence), "\x1b]9;4;0;0\x07");
+        assert_eq!(format!("{sequence}"), "\x1b]9;4;0;0\x07");
     }
 }

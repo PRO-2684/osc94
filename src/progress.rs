@@ -77,7 +77,7 @@ impl<W: Write> Progress<W> {
     // General methods for creating and flushing the progress bar.
 
     /// Creates a new `Progress` instance.
-    pub fn new(destination: W) -> Self {
+    pub const fn new(destination: W) -> Self {
         Self {
             state: ProgressState::Hidden,
             progress: 0,
@@ -103,72 +103,68 @@ impl<W: Write> Progress<W> {
     // State-related methods
 
     /// Gets the current state of the progress bar.
-    pub fn get_state(&self) -> ProgressState {
+    pub const fn get_state(&self) -> ProgressState {
         self.state
     }
 
     /// Sets the state of the progress bar.
-    pub fn state(&mut self, state: ProgressState) -> &mut Self {
+    pub const fn state(&mut self, state: ProgressState) -> &mut Self {
         self.state = state;
         self
     }
 
     /// Starts the progress bar in normal state. (Equivalent to [`normal`](Progress::normal))
-    pub fn start(&mut self) -> &mut Self {
+    pub const fn start(&mut self) -> &mut Self {
         self.normal()
     }
 
     /// Sets the state of the progress bar to [`Hidden`](ProgressState::Hidden).
-    pub fn hidden(&mut self) -> &mut Self {
+    pub const fn hidden(&mut self) -> &mut Self {
         self.state(ProgressState::Hidden)
     }
 
     /// Sets the state of the progress bar to [`Normal`](ProgressState::Normal).
-    pub fn normal(&mut self) -> &mut Self {
+    pub const fn normal(&mut self) -> &mut Self {
         self.state(ProgressState::Normal)
     }
 
     /// Sets the state of the progress bar to [`Error`](ProgressState::Error).
-    pub fn error(&mut self) -> &mut Self {
+    pub const fn error(&mut self) -> &mut Self {
         self.state(ProgressState::Error)
     }
 
     /// Sets the state of the progress bar to [`Indeterminate`](ProgressState::Indeterminate).
-    pub fn indeterminate(&mut self) -> &mut Self {
+    pub const fn indeterminate(&mut self) -> &mut Self {
         self.state(ProgressState::Indeterminate)
     }
 
     /// Sets the state of the progress bar to [`Warning`](ProgressState::Warning).
-    pub fn warning(&mut self) -> &mut Self {
+    pub const fn warning(&mut self) -> &mut Self {
         self.state(ProgressState::Warning)
     }
 
     // Progress-related methods
 
     /// Gets the current progress value.
-    pub fn get_progress(&self) -> u8 {
+    pub const fn get_progress(&self) -> u8 {
         self.progress
     }
 
     /// Sets the progress value, saturating at 100.
-    pub fn progress(&mut self, progress: u8) -> &mut Self {
-        self.progress = progress.min(100);
+    pub const fn progress(&mut self, progress: u8) -> &mut Self {
+        // self.progress = progress.min(100); // Not `const`
+        self.progress = if progress > 100 { 100 } else { progress };
         self
     }
 
     /// Increments the progress value, saturating at 100.
-    pub fn increment(&mut self, by: u8) -> &mut Self {
-        let new_progress = self.progress.saturating_add(by);
-        if new_progress <= 100 {
-            self.progress = new_progress;
-        } else {
-            self.progress = 100;
-        }
+    pub const fn increment(&mut self, by: u8) -> &mut Self {
+        self.progress(self.progress.saturating_add(by));
         self
     }
 
     /// Whether the progress bar is finished.
-    pub fn is_finished(&self) -> bool {
+    pub const fn is_finished(&self) -> bool {
         self.progress == 100
     }
 }
