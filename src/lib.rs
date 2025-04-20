@@ -1,22 +1,12 @@
 //! # `osc94` library crate
 //!
-//! If you are reading this, you are reading the documentation for the `osc94` library crate. For the cli, kindly refer to the README file.
+//! Library for handling progress bar sequences (OSC 9;4).
 
 #![deny(missing_docs)]
 #![warn(clippy::all, clippy::nursery, clippy::pedantic, clippy::cargo)]
 
-/// Add two numbers together.
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+pub mod raw;
+mod state;
 
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
-}
+pub use raw::OSC94;
+pub use state::ProgressState;
