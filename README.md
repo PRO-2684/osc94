@@ -33,9 +33,29 @@ fn main() -> Result<()> {
 
 ## 📖 Usage
 
-Usually, you'll only need the `Progress` struct, which provides a high-level interface and handles clean up job for you when dropped. If you need finer control, you can use the `OSC94` struct and `ProgressState` enum. See the documentation of respective API for more details.
+Usually, you'll only need the [`Progress`] struct, which provides a high-level interface and handles clean up job for you when dropped. If you need finer control, you can use the [`OSC94`] struct and [`ProgressState`] enum. See the documentation of respective API for more details.
 
-## 📥 Demo Binary
+## 📥 Binary
+
+The provided binary allows you to play with progress bar sequences:
+
+```shell
+$ osc94
+Sets the progress state and value of the progress bar for 1 second.
+
+Usage: osc94 <state> <progress>
+
+States:
+  0/hidden
+  1/normal
+  2/error
+  3/indeterminate
+  4/warning
+
+Progress: 0-100
+```
+
+It can be installed via the following methods:
 
 ### Using [`binstall`](https://github.com/cargo-bins/cargo-binstall)
 
