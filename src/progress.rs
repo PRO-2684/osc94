@@ -66,7 +66,7 @@ use std::io::{Result as IoResult, Stderr, Write};
 ///
 /// ### Resetting
 ///
-/// When the `Progress` instance is dropped, it will automatically reset the progress bar to the default state (i.e. hides the progress bar).
+/// When the `Progress` instance is dropped, it will automatically reset the progress bar to the default state (i.e. hides the progress bar). You can also manually reset the progress bar by calling [`hidden`](Progress::hidden()) and then [`flush`](Progress::flush()).
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Progress<W: Write> {
     /// The state of the progress bar.
