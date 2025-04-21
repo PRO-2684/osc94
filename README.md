@@ -31,6 +31,8 @@ fn main() -> Result<()> {
 }
 ```
 
+See more examples in the [examples directory](./examples/).
+
 ## 📖 Usage
 
 Usually, you'll only need the [`Progress`] struct, which provides a high-level interface and handles clean up job for you when dropped. If you need finer control, you can use the [`OSC94`] struct and [`ProgressState`] enum. See the documentation of respective API for more details.
