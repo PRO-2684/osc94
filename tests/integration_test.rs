@@ -1,6 +1,9 @@
+#[cfg(feature = "std")]
 use std::io::Result;
 
-use osc94::{OSC94, Progress, ProgressState};
+#[cfg(feature = "std")]
+use osc94::Progress;
+use osc94::{OSC94, ProgressState};
 
 #[test]
 fn test_raw() {
@@ -28,6 +31,7 @@ fn test_raw() {
 }
 
 #[test]
+#[cfg(feature = "std")]
 fn test_progress() {
     // Initialization
     let sink = std::io::sink(); // Discard output
@@ -61,6 +65,7 @@ fn test_progress() {
 }
 
 #[test]
+#[cfg(feature = "std")]
 fn test_progress_repr() -> Result<()> {
     let mut buffer = Vec::new();
 

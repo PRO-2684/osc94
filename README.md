@@ -13,6 +13,8 @@ Library for handling progress bar sequences (OSC 9;4).
 ## 💡 Example
 
 ```rust
+# #[cfg(feature = "std")]
+# {
 use osc94::Progress;
 use std::io::Result;
 
@@ -29,6 +31,7 @@ fn main() -> Result<()> {
 
     Ok(())
 }
+# }
 ```
 
 See more examples in the [examples directory](./examples/).
@@ -36,6 +39,23 @@ See more examples in the [examples directory](./examples/).
 ## 📖 Usage
 
 Usually, you'll only need the [`Progress`] struct, which provides a high-level interface and handles clean up job for you when dropped. If you need finer control, you can use the [`OSC94`] struct and [`ProgressState`] enum. See the documentation of respective API for more details.
+
+## 🚩 Feature flags
+
+Default features include `std`.
+
+| Feature | Default | Description |
+| ------- | ------- | ----------- |
+| `std` | Yes | Enables [`Progress`], which writes progress sequences to `std::io::Write` destinations. |
+| `cli` | No | Enables the `osc94` binary. This also enables `std`. |
+
+Disable default features to use the crate in `no_std` contexts:
+
+```toml
+osc94 = { version = "0.1", default-features = false }
+```
+
+With default features disabled, [`OSC94`] and [`ProgressState`] remain available for formatting progress sequences, while [`Progress`] is not exported.
 
 ## 📥 Binary
 

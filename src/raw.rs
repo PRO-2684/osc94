@@ -1,7 +1,7 @@
 //! This module is for handling raw progress bar sequence (OSC 9;4).
 
 use super::ProgressState;
-use std::fmt::Display;
+use core::fmt::{self, Display};
 
 /// A raw progress bar sequence (OSC 9;4).
 #[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
@@ -21,7 +21,7 @@ impl OSC94 {
 }
 
 impl Display for OSC94 {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "\x1b]9;4;{};{}\x07", self.state as u8, self.progress)
     }
 }
@@ -29,6 +29,7 @@ impl Display for OSC94 {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::format;
 
     #[test]
     fn test_raw_progress_sequence() {
