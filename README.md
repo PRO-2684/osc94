@@ -44,10 +44,10 @@ Usually, you'll only need the [`Progress`] struct, which provides a high-level i
 
 Default features include `std`.
 
-| Feature | Default | Description |
-| ------- | ------- | ----------- |
-| `std` | Yes | Enables [`Progress`], which writes progress sequences to `std::io::Write` destinations. |
-| `cli` | No | Enables the `osc94` binary. This also enables `std`. |
+| Feature | Default | Description                                                                             |
+| ------- | ------- | --------------------------------------------------------------------------------------- |
+| `std`   | Yes     | Enables [`Progress`], which writes progress sequences to `std::io::Write` destinations. |
+| `cli`   | No      | Enables the `osc94` binary. This also enables `std`.                                    |
 
 Disable default features to use the crate in `no_std` contexts:
 
@@ -92,7 +92,7 @@ Navigate to the [Releases page](https://github.com/PRO-2684/osc94/releases) and 
 ### Compiling from Source
 
 ```shell
-cargo install osc94
+cargo install osc94 --features cli
 ```
 
 ## 🎉 Credits
