@@ -1,7 +1,11 @@
 #![warn(clippy::all, clippy::nursery, clippy::pedantic, clippy::cargo)]
 
 use osc94::{Progress, ProgressState};
-use std::{io::{Error, ErrorKind, Result}, thread::sleep, time::Duration};
+use std::{
+    io::{Error, ErrorKind, Result},
+    thread::sleep,
+    time::Duration,
+};
 
 fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().take(3).collect();
@@ -27,9 +31,7 @@ fn main() -> Result<()> {
     };
 
     let mut progress = Progress::default();
-    progress.state(state)
-        .progress(progress_value)
-        .flush()?;
+    progress.state(state).progress(progress_value).flush()?;
 
     sleep(Duration::from_secs(1));
 
